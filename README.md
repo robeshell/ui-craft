@@ -16,25 +16,41 @@
 
 ## 安装
 
-**Claude Code**
+**推荐：用 npx 一条命令安装**
+
+```bash
+npx skills add robeshell/ui-craft -g -a claude-code -a codex -y
+```
+
+这条命令用的是 npm 上的 [skills](https://github.com/vercel-labs/skills) 工具，它直接从本仓库的 main 分支拉取。
+
+- `-g` 装到用户级目录，所有项目都能用。去掉它就只装进当前项目。
+- `-a` 指定装给哪个工具，只用 Claude Code 就只写 `-a claude-code`。
+- `-y` 跳过确认。不加的话会逐步询问装给哪些工具、装到哪里。
+
+装好后，文件在 `~/.agents/skills/ui-craft`，Codex 直接读这里。`~/.claude/skills/ui-craft` 是指向它的链接，供 Claude Code 使用。两边共用一份文件，以后更新只需要：
+
+```bash
+npx skills update
+```
+
+之前用 `cp` 手动装过的话，先删掉旧的 `~/.claude/skills/ui-craft` 和 `~/.codex/skills/ui-craft`，避免重复。
+
+**手动安装**
+
+不想用 npx 时，克隆仓库后复制到对应目录。
 
 ```bash
 git clone https://github.com/robeshell/ui-craft.git
-mkdir -p ~/.claude/skills
-cp -R ui-craft ~/.claude/skills/ui-craft
+
+# Claude Code
+mkdir -p ~/.claude/skills && cp -R ui-craft ~/.claude/skills/ui-craft
+
+# Codex
+mkdir -p ~/.codex/skills && cp -R ui-craft ~/.codex/skills/ui-craft
 ```
 
-只想在某个项目里用，就复制到该项目的 `.claude/skills/ui-craft`。
-
-**Codex**
-
-```bash
-git clone https://github.com/robeshell/ui-craft.git
-mkdir -p ~/.codex/skills
-cp -R ui-craft ~/.codex/skills/ui-craft
-```
-
-其他支持 `SKILL.md` 的工具按各自的安装方式放置本目录即可。目标目录已存在时先比较内容，避免覆盖本地修改。
+只想在某个项目里用，就复制到该项目的 `.claude/skills/ui-craft`。其他支持 `SKILL.md` 的工具按各自的方式放置本目录即可。目标目录已存在时先比较内容，避免覆盖本地修改。
 
 ## 使用
 
@@ -65,7 +81,7 @@ agent 会先判断任务是局部修正、页面重排、规范整理还是评�
 | [references/review.md](references/review.md) | 检查范围、检查表、证据边界、评审表达、交付记录模板 | 验收和交付时 |
 | [references/sources.md](references/sources.md) | CRAP、教程和平台文档的归属与取舍 | 需要追溯来源时 |
 | [scripts/contrast.py](scripts/contrast.py) | sRGB 色对对比度计算，支持透明色合成 | 校验文字颜色时 |
-| [evals/evals.json](evals/evals.json) | 三个测试 prompt，用于比较装与不装 skill 的输出差异 | 修改 skill 后 |
+| [evals/evals.json](evals/evals.json) | 七个测试 prompt 和评判标准，输入文件在 `evals/files/`，用于比较装与不装 skill 的输出差异 | 修改 skill 后 |
 
 ```bash
 python3 scripts/contrast.py '#767676' '#FFFFFF'
