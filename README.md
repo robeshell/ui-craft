@@ -82,7 +82,7 @@ agent 会先判断任务是局部修正、页面重排、规范整理还是评�
 | [references/visual-rules.md](references/visual-rules.md) | 文字、单位、色彩、间距、圆角、图标、状态、动效的判定规则和临时基线 | 处理具体细节时 |
 | [references/color-layers.md](references/color-layers.md) | 表面分层、颜色预算、大色块、图标底块、渐变的判定规则，以及 AI 味特征清单 | 页面颜色太花、有 AI 味、深色模式分不清层次时 |
 | [references/review.md](references/review.md) | 检查范围、检查表、证据边界、评审表达、交付记录模板 | 验收和交付时 |
-| [references/sources.md](references/sources.md) | CRAP、教程和平台文档的归属与取舍 | 需要追溯来源时 |
+| [references/sources.md](references/sources.md) | CRAP、平台文档的归属与取舍 | 需要追溯来源时 |
 | [scripts/contrast.py](scripts/contrast.py) | sRGB 色对对比度计算，支持透明色合成 | 校验文字颜色时 |
 | [scripts/surfaces.py](scripts/surfaces.py) | 从品牌色生成带色调的中性灰阶，浅色和深色各一套，附对比度 | 项目没有 tokens、需要一套表面色时 |
 | [evals/evals.json](evals/evals.json) | 十一个测试 prompt 和评判标准，输入文件在 `evals/files/`，用于比较装与不装 skill 的输出差异 | 修改 skill 后 |
@@ -98,4 +98,4 @@ python3 scripts/contrast.py 'rgba(0,0,0,0.6)' '#F5F5F5' --over '#FFFFFF'
 
 欢迎通过 Issue 提供具体的页面问题、使用场景和验证结果，或提交有明确原因的改进。修改 skill 后建议用 `evals/evals.json` 里的 prompt 跑一遍，确认改动真的改变了输出。请勿上传私人项目资料、账号、截图中的个人信息或无权分发的素材。
 
-仓库原创内容采用 [MIT License](LICENSE)。链接指向的书籍、教程和第三方内容不属于此许可；本仓库不附带其素材，也不代表相关作者的官方发布。
+仓库原创内容采用 [MIT License](LICENSE)。链接指向的书籍和第三方文档不属于此许可；本仓库不附带其素材，也不代表相关作者的官方发布。
