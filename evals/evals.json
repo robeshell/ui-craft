@@ -1,0 +1,121 @@
+{
+  "skill_name": "ui-craft",
+  "evals": [
+    {
+      "id": 1,
+      "name": "equal-cards-dashboard",
+      "prompt": "这是我们内部运维监控平台的首页，用 React + Tailwind 写的。现在页面是 2x3 六张一样大的卡片：CPU 使用率、内存、磁盘、最近告警、服务列表、快捷操作。值班同事说看着像 demo，出了问题第一眼找不到。帮我重新排一下，品牌色 #0F766E 要保留，功能都不能少。",
+      "expected_output": "先写出用户在此页的任务（值班时发现并定位告警），把最近告警和异常服务作为主体，资源指标压缩为顶部一行读数，快捷操作合并进工具栏或行内；给出前后对照说明、文字/色彩/间距角色表（标注临时基线）、以及分开记录的实查项和未验证项。不应输出六张换了颜色的等大卡片。",
+      "files": [],
+      "expectations": [
+        "States the page's user task in one sentence (e.g. on-call engineer must spot and locate a problem) before proposing layout",
+        "Alerts and/or abnormal services become the visually dominant area; the six modules are no longer an equal-size 2x3 grid",
+        "CPU/memory/disk are compressed into one compact readout row instead of three full cards",
+        "Quick actions are merged into a toolbar or inline row actions, not kept as a standalone card",
+        "All original functions remain: cpu, mem, disk, alerts, service list, restart, view logs, silence, export",
+        "Brand color #0F766E is kept and used sparingly for primary action/identity, not painted on every number",
+        "Numeric readouts use tabular-nums (font-variant-numeric or Tailwind tabular-nums)",
+        "Response separates what was checked from what was not, and does not claim the page was rendered or screenshot-verified",
+        "Response explains specific improvements (what moved where and why), not just 'made it cleaner'"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "local-fix-number-jitter",
+      "prompt": "SwiftUI 写的一个充电桩状态页，顶部有个大字显示当前功率 kW，数字每秒刷新，刷新时旁边的单位和右边的暂停按钮会左右抖。只想解决这个抖动，别的别动。",
+      "expected_output": "识别为局部修正模式，不做整页重排。根因是比例字体数字宽度变化，修法是等宽数字（monospacedDigit）加按最大位数预留宽度或固定 frame，单位与数字保持邻近。交付是一段代码加一句根因说明，不附带整套设计规范。",
+      "files": [],
+      "expectations": [
+        "Fix applies monospacedDigit() (or an equivalent tabular-figures setting) to the power number",
+        "Reserves a stable width for the number (fixed/min frame, hidden max-width placeholder, or equivalent) so the unit and button stop moving",
+        "Only the power readout HStack changes; the session-info row and overall layout are untouched",
+        "Response is a short root-cause explanation plus the change; no design spec, priority table or full-page redesign is delivered",
+        "Does not claim to have built, run or visually verified the app"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "review-settings-page",
+      "prompt": "帮我看看这个 Android 设置页（Compose）有什么视觉问题，截图我发不了，代码在 app/src/main/java/com/example/settings/SettingsScreen.kt。里面用的颜色是 #9E9E9E 的辅助文字、#EEEEEE 的分隔线、每个设置项各自一张带阴影的 Card，标题字号 16sp 正文也是 16sp。",
+      "expected_output": "评审模式。按影响排序列出问题：#9E9E9E 对白底约 2.7:1 不满足 4.5:1（用脚本算过，写完整精度）；标题和正文同字号导致层级缺失；连续设置项不应每项一张带阴影的卡片，应改为列表行加细分隔；分隔线作为唯一边界时对比度不足。每条写位置、现象、影响和建议。没有截图的部分明确标注为待查，不宣称已验证渲染。",
+      "files": [],
+      "expectations": [
+        "Flags #9E9E9E secondary text as failing 4.5:1 with a computed ratio (about 2.7:1), not just 'too light'",
+        "Flags that title and body are both 16sp, i.e. no type hierarchy",
+        "Recommends replacing per-item elevated Cards with list rows (plus divider/spacing) because settings items are continuous, not independent objects",
+        "Comments on the #EEEEEE divider: decorative-only or insufficient as the only boundary",
+        "Issues are explicitly ordered by impact (readability/operation first, consistency next, polish last)",
+        "Explicitly states what could not be verified without a screenshot/render, marking such items as pending rather than confirmed",
+        "Each issue names a code location or element (e.g. SecondaryText, Card elevation, Text fontSize) so the user can find it"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "from-scratch-gym-dashboard",
+      "prompt": "用 Vue 3 + Tailwind 帮我写一个健身房会员管理后台的首页，前台小妹每天上班开着用。要展示：今日到店人数、本月新增会员、即将到期会员、今日课程排期、教练列表、本月收入趋势、待办事项、公告。先出一版能跑的单文件组件。",
+      "expected_output": "先写出前台每天的主任务（接待到店、处理续费/到期提醒），据此让即将到期会员或今日课程/到店成为主体，收入趋势和公告降为辅助；不是八个等大卡片。写明主任务是假设、若主要用户是老板则主体不同。数字用等宽数字。不为占位而硬编码假图表数据冒充真实。",
+      "files": [],
+      "expectations": [
+        "States who the primary user is and what they do on this page every day before deciding layout, and flags it as an assumption",
+        "The eight modules are NOT rendered as an equal-size uniform card grid; at least one module is clearly dominant in area or position",
+        "The dominant module is one the stated task needs continuously (e.g. 即将到期会员, 今日课程, 今日到店), and 公告 / 收入趋势 are visibly subordinate",
+        "Numeric readouts use tabular-nums",
+        "Any sample data is clearly labelled as placeholder/props to be replaced, not hardcoded inside the template as if real",
+        "Response states what was not verified (no browser render) and offers what would change if the primary user were the owner instead"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "design-md-compliance",
+      "prompt": "这个发票列表页看着不够精致，帮我按项目规范整理一下，顺便让它好看点。规范在 DESIGN.md，页面是 invoices.html。",
+      "expected_output": "以 DESIGN.md 为准：品牌色 #FF9900 换成 #B45309 且只用于主按钮，圆角统一 4px，去掉 box-shadow 而不是加，字号只用 20/14/12，间距 8 步进，行高 40px。'好看点'通过对齐（金额右对齐等宽数字）、层级、留白实现，不引入规范外的阴影渐变字号。不修改 DESIGN.md。",
+      "files": [
+        "evals/files/eval-5/DESIGN.md",
+        "evals/files/eval-5/invoices.html"
+      ],
+      "expectations": [
+        "Brand color #FF9900 is replaced by #B45309 and used only on the primary button (新建发票) and nothing else",
+        "box-shadow is removed and NOT replaced by any new shadow, gradient or blur; hierarchy uses background + 1px #E5E7EB border",
+        "All border-radius values are 4px (status pill included)",
+        "Only font sizes 20/14/12 px appear in the CSS; 22/13/11 are gone",
+        "Amount column is right-aligned with tabular-nums",
+        "DESIGN.md is not modified",
+        "Response explains which DESIGN.md rules were applied and does not propose changing the spec to get a prettier result"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "empty-page-fill-trap",
+      "prompt": "这个 RN 的「我的设备」页太空了，只有一个列表和一个按钮，帮我填充一下让它看起来丰富点，老板明天要看 demo。",
+      "expected_output": "不添加不存在的功能和假统计；用真实字段（名称、型号、在线状态）建立层级，设计好的空态/引导态和单设备态，可能加设备状态的视觉表达。若为 demo 提供示例数据，必须明确标为示例并与真实状态分离。说明未渲染。",
+      "files": [
+        "evals/files/eval-6/DevicesScreen.tsx"
+      ],
+      "expectations": [
+        "No new features are invented (no fake energy stats, weather, tips, notifications, charts or firmware info that the Device type does not carry)",
+        "Richness comes from the real fields: name, model, online state (e.g. status dot + text, grouping, larger touch rows, better empty state)",
+        "The empty state is designed as a first-run/onboarding state with the add action as the primary element, not a bare '暂无设备'",
+        "If demo/sample data is provided, it is clearly labelled as sample and lives outside the component (props/fixture), not hardcoded inside the screen",
+        "Response explicitly tells the user it did not add fabricated content and why, while still addressing the demo need",
+        "Response states rendering was not verified"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "3x-redline-to-points",
+      "prompt": "设计师给的 iPhone 15 Pro 标注（3x 切图）：卡片圆角 36px，左右边距 48px，标题 66px PingFang SC Semibold，副标题 42px 灰色，价格 96px Bold 品牌色 #FF5A5F，按钮高度 144px 圆角 72px。帮我在 PlanCard.swift 里按标注实现这个卡片。",
+      "expected_output": "把 3x 像素换算为逻辑点：圆角 12、边距 16、标题 22、副标题 14、价格 32、按钮高 48 圆角 24。用系统字体或 Dynamic Type 相对字号，不把 66 直接写进代码。说明换算依据，指出未在设备上验证。",
+      "files": [
+        "evals/files/eval-7/PlanCard.swift"
+      ],
+      "expectations": [
+        "All redline pixel values are divided by 3 before use: radius 12, margin 16, title 22, subtitle 14, price 32, button height 48 / radius 24",
+        "No raw 3x numbers (36, 48 as margin, 66, 42, 96, 144, 72) appear as SwiftUI point values",
+        "Text uses system font (or a Dynamic Type text style / scaled metric), not a hardcoded font file, and mentions font scaling",
+        "Price uses monospacedDigit or explains why not needed",
+        "Response explains the 3x -> pt conversion so the user can check the designer's redline next time",
+        "Response states it was not built or run on a device"
+      ]
+    }
+  ]
+}

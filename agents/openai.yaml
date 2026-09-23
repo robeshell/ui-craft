@@ -1,4 +1,4 @@
 interface:
   display_name: "UI Craft"
-  short_description: "从任务主次到信息分组、品牌表达与细节精修，形成可落地的通用 UI 设计方法"
-  default_prompt: "使用 $ui-craft 根据当前产品任务确定功能主次，组织信息与视觉语言，再按本次范围设计、精修或检查界面。"
+  short_description: "任务驱动的 UI 设计、重排、精修与评审：先定主次，再分组、对齐、建立产品表达，最后以实际渲染验收"
+  default_prompt: "使用 $ui-craft 处理当前页面。先判断用户在此页要完成什么，据此确定视觉主次，保留已有品牌和业务，调整信息分组与视觉细节，并以实际渲染验收。"
