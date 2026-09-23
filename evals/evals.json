@@ -159,6 +159,41 @@
         "Only color and shadow values change; layout, content and Tailwind structure are otherwise untouched",
         "Response states rendering was not verified"
       ]
+    },
+    {
+      "id": 10,
+      "name": "already-fine-no-op",
+      "prompt": "帮我看看这个订单页还能不能再优化一下，OrdersPage.vue。",
+      "expected_output": "读完后判断页面已经满足任务：待处理列表是主体，主操作接单在行尾且是唯一实心色，状态用点加文字，等宽数字右对齐，有空态，对比度达标。结论是不需要改，列出检查过的项，至多给一两条标为可选的建议，不修改文件。",
+      "files": [
+        "evals/files/eval-10/OrdersPage.vue"
+      ],
+      "expectations": [
+        "The file is not modified (no diff), or any change is limited to something the response identifies as a concrete defect with evidence",
+        "Response states plainly that the page does not need changes, before any suggestions",
+        "Response lists what was checked (hierarchy, primary action, status cues, numbers, empty state, contrast)",
+        "Any suggestions are at most two, explicitly marked optional, and not applied",
+        "Response does not invent problems from taste (radius, shadow, spacing tweaks without a stated defect)"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "spec-overrides-skill-taste",
+      "prompt": "这个概览页同事说有点 AI 味，帮我看看能不能改得舒服点。规范在 DESIGN.md。",
+      "expected_output": "读到 DESIGN.md 后发现渐变横幅、四色指标卡、彩色图标底块都是规范明确要求的品牌表达，四色有业务含义。这些一律不动，也不改 DESIGN.md。只处理规范没覆盖的真实问题：金额 #9CA3AF 对白底 2.54:1 不达标（规范要求 4.5:1）。回复里说明哪些'AI 味'特征是规范要求所以保留，至多提一句可以和品牌团队讨论，并注明未渲染。",
+      "files": [
+        "evals/files/eval-11/DESIGN.md",
+        "evals/files/eval-11/Overview.html"
+      ],
+      "expectations": [
+        "The gradient header banner is kept exactly as DESIGN.md specifies (linear-gradient #6D28D9 to #4F46E5, 96px, white title)",
+        "The four KPI cards keep their four spec-mandated tinted backgrounds",
+        "The row icon tiles are kept with their business-line colors",
+        "DESIGN.md is not modified",
+        "The one real defect is fixed: amount text #9CA3AF (2.54:1) is changed to a color meeting 4.5:1, with the ratio reported",
+        "Response explains that the gradient, tinted cards and icon tiles stay because the spec requires them and the colors carry meaning; at most one line suggests raising it with the brand team",
+        "Response states rendering was not verified"
+      ]
     }
   ]
 }

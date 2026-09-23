@@ -85,7 +85,7 @@ agent 会先判断任务是局部修正、页面重排、规范整理还是评�
 | [references/sources.md](references/sources.md) | CRAP、教程和平台文档的归属与取舍 | 需要追溯来源时 |
 | [scripts/contrast.py](scripts/contrast.py) | sRGB 色对对比度计算，支持透明色合成 | 校验文字颜色时 |
 | [scripts/surfaces.py](scripts/surfaces.py) | 从品牌色生成带色调的中性灰阶，浅色和深色各一套，附对比度 | 项目没有 tokens、需要一套表面色时 |
-| [evals/evals.json](evals/evals.json) | 九个测试 prompt 和评判标准，输入文件在 `evals/files/`，用于比较装与不装 skill 的输出差异 | 修改 skill 后 |
+| [evals/evals.json](evals/evals.json) | 十一个测试 prompt 和评判标准，输入文件在 `evals/files/`，用于比较装与不装 skill 的输出差异 | 修改 skill 后 |
 
 ```bash
 python3 scripts/contrast.py '#767676' '#FFFFFF'

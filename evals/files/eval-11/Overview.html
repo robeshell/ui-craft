@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>业务概览</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-[#F5F6F8] text-[#1A1A1A]">
+  <header class="h-24 text-white" style="background: linear-gradient(90deg, #6D28D9, #4F46E5)">
+    <div class="mx-auto flex h-full max-w-6xl items-center px-6">
+      <h1 class="text-2xl font-semibold">业务概览</h1>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-6xl space-y-6 px-6 py-6">
+    <section class="grid grid-cols-4 gap-4">
+      <div class="rounded-xl bg-[#EFF6FF] p-5"><p class="text-xs text-[#6B7280]">零售</p><p class="mt-1 text-2xl font-semibold tabular-nums">1,284</p></div>
+      <div class="rounded-xl bg-[#ECFDF5] p-5"><p class="text-xs text-[#6B7280]">批发</p><p class="mt-1 text-2xl font-semibold tabular-nums">312</p></div>
+      <div class="rounded-xl bg-[#FFFBEB] p-5"><p class="text-xs text-[#6B7280]">跨境</p><p class="mt-1 text-2xl font-semibold tabular-nums">96</p></div>
+      <div class="rounded-xl bg-[#F5F3FF] p-5"><p class="text-xs text-[#6B7280]">企业</p><p class="mt-1 text-2xl font-semibold tabular-nums">41</p></div>
+    </section>
+
+    <section class="rounded-xl bg-white">
+      <h2 class="border-b border-[#E5E7EB] px-5 py-3 text-sm font-semibold">最近订单</h2>
+      <ul class="divide-y divide-[#F0F1F3]">
+        <li class="flex items-center gap-3 px-5 py-3">
+          <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-[#2563EB] text-white text-xs">零</span>
+          <span class="flex-1 text-sm">杭州云栖科技 · 12 件</span>
+          <span class="text-sm tabular-nums text-[#9CA3AF]">¥12,400</span>
+        </li>
+        <li class="flex items-center gap-3 px-5 py-3">
+          <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-[#059669] text-white text-xs">批</span>
+          <span class="flex-1 text-sm">北京长风物流 · 240 件</span>
+          <span class="text-sm tabular-nums text-[#9CA3AF]">¥86,000</span>
+        </li>
+        <li class="flex items-center gap-3 px-5 py-3">
+          <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-[#D97706] text-white text-xs">跨</span>
+          <span class="flex-1 text-sm">Seaside Trading · 8 件</span>
+          <span class="text-sm tabular-nums text-[#9CA3AF]">¥5,120</span>
+        </li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
