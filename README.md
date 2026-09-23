@@ -1,5 +1,7 @@
 # UI Craft
 
+[![npx skills add robeshell/ui-craft](https://img.shields.io/badge/npx-skills%20add%20robeshell%2Fui--craft-CB3837?logo=npm&logoColor=white)](#安装)
+
 给 coding agent 用的 UI 设计与精修 skill。适用于网页和 iOS / Android / HarmonyOS 原生应用，中文编写。
 
 它让 agent 在动手改样式之前先回答一个问题："用户在这个页面要完成什么？"然后把视觉权重、信息分组、品牌表达和细节规则依次落到可验证的实现上。核心是判定规则加一份完整示例，而不是一套固定主题。
