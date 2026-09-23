@@ -48,6 +48,74 @@
         "Explicitly states what could not be verified without a screenshot/render, marking such items as pending rather than confirmed",
         "Each issue names a code location or element (e.g. SecondaryText, Card elevation, Text fontSize) so the user can find it"
       ]
+    },
+    {
+      "id": 4,
+      "name": "from-scratch-gym-dashboard",
+      "prompt": "用 Vue 3 + Tailwind 帮我写一个健身房会员管理后台的首页，前台小妹每天上班开着用。要展示：今日到店人数、本月新增会员、即将到期会员、今日课程排期、教练列表、本月收入趋势、待办事项、公告。先出一版能跑的单文件组件。",
+      "expected_output": "先写出前台每天的主任务（接待到店、处理续费/到期提醒），据此让即将到期会员或今日课程/到店成为主体，收入趋势和公告降为辅助；不是八个等大卡片。写明主任务是假设、若主要用户是老板则主体不同。数字用等宽数字。不为占位而硬编码假图表数据冒充真实。",
+      "files": [],
+      "expectations": [
+        "States who the primary user is and what they do on this page every day before deciding layout, and flags it as an assumption",
+        "The eight modules are NOT rendered as an equal-size uniform card grid; at least one module is clearly dominant in area or position",
+        "The dominant module is one the stated task needs continuously (e.g. 即将到期会员, 今日课程, 今日到店), and 公告 / 收入趋势 are visibly subordinate",
+        "Numeric readouts use tabular-nums",
+        "Any sample data is clearly labelled as placeholder/props to be replaced, not hardcoded inside the template as if real",
+        "Response states what was not verified (no browser render) and offers what would change if the primary user were the owner instead"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "design-md-compliance",
+      "prompt": "这个发票列表页看着不够精致，帮我按项目规范整理一下，顺便让它好看点。规范在 DESIGN.md，页面是 invoices.html。",
+      "expected_output": "以 DESIGN.md 为准：品牌色 #FF9900 换成 #B45309 且只用于主按钮，圆角统一 4px，去掉 box-shadow 而不是加，字号只用 20/14/12，间距 8 步进，行高 40px。'好看点'通过对齐（金额右对齐等宽数字）、层级、留白实现，不引入规范外的阴影渐变字号。不修改 DESIGN.md。",
+      "files": [
+        "evals/files/eval-5/DESIGN.md",
+        "evals/files/eval-5/invoices.html"
+      ],
+      "expectations": [
+        "Brand color #FF9900 is replaced by #B45309 and used only on the primary button (新建发票) and nothing else",
+        "box-shadow is removed and NOT replaced by any new shadow, gradient or blur; hierarchy uses background + 1px #E5E7EB border",
+        "All border-radius values are 4px (status pill included)",
+        "Only font sizes 20/14/12 px appear in the CSS; 22/13/11 are gone",
+        "Amount column is right-aligned with tabular-nums",
+        "DESIGN.md is not modified",
+        "Response explains which DESIGN.md rules were applied and does not propose changing the spec to get a prettier result"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "empty-page-fill-trap",
+      "prompt": "这个 RN 的「我的设备」页太空了，只有一个列表和一个按钮，帮我填充一下让它看起来丰富点，老板明天要看 demo。",
+      "expected_output": "不添加不存在的功能和假统计；用真实字段（名称、型号、在线状态）建立层级，设计好的空态/引导态和单设备态，可能加设备状态的视觉表达。若为 demo 提供示例数据，必须明确标为示例并与真实状态分离。说明未渲染。",
+      "files": [
+        "evals/files/eval-6/DevicesScreen.tsx"
+      ],
+      "expectations": [
+        "No new features are invented (no fake energy stats, weather, tips, notifications, charts or firmware info that the Device type does not carry)",
+        "Richness comes from the real fields: name, model, online state (e.g. status dot + text, grouping, larger touch rows, better empty state)",
+        "The empty state is designed as a first-run/onboarding state with the add action as the primary element, not a bare '暂无设备'",
+        "If demo/sample data is provided, it is clearly labelled as sample and lives outside the component (props/fixture), not hardcoded inside the screen",
+        "Response explicitly tells the user it did not add fabricated content and why, while still addressing the demo need",
+        "Response states rendering was not verified"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "3x-redline-to-points",
+      "prompt": "设计师给的 iPhone 15 Pro 标注（3x 切图）：卡片圆角 36px，左右边距 48px，标题 66px PingFang SC Semibold，副标题 42px 灰色，价格 96px Bold 品牌色 #FF5A5F，按钮高度 144px 圆角 72px。帮我在 PlanCard.swift 里按标注实现这个卡片。",
+      "expected_output": "把 3x 像素换算为逻辑点：圆角 12、边距 16、标题 22、副标题 14、价格 32、按钮高 48 圆角 24。用系统字体或 Dynamic Type 相对字号，不把 66 直接写进代码。说明换算依据，指出未在设备上验证。",
+      "files": [
+        "evals/files/eval-7/PlanCard.swift"
+      ],
+      "expectations": [
+        "All redline pixel values are divided by 3 before use: radius 12, margin 16, title 22, subtitle 14, price 32, button height 48 / radius 24",
+        "No raw 3x numbers (36, 48 as margin, 66, 42, 96, 144, 72) appear as SwiftUI point values",
+        "Text uses system font (or a Dynamic Type text style / scaled metric), not a hardcoded font file, and mentions font scaling",
+        "Price uses monospacedDigit or explains why not needed",
+        "Response explains the 3x -> pt conversion so the user can check the designer's redline next time",
+        "Response states it was not built or run on a device"
+      ]
     }
   ]
 }

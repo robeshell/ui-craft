@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>发票列表</title>
+<style>
+  body { margin: 0; background: #f0f0f0; font-family: Arial, sans-serif; }
+  .page { padding: 20px; }
+  h1 { font-size: 22px; color: #FF9900; margin: 0 0 18px; }
+  .toolbar { display: flex; gap: 10px; margin-bottom: 14px; }
+  .btn { padding: 8px 14px; border-radius: 6px; border: none; background: #FF9900; color: #fff; font-size: 13px; }
+  .btn.secondary { background: #fff; color: #333; border: 1px solid #ccc; }
+  .card { background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,.15); padding: 18px; }
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; font-size: 13px; color: #999; padding: 10px 6px; border-bottom: 2px solid #eee; }
+  td { font-size: 13px; padding: 12px 6px; border-bottom: 1px solid #f2f2f2; color: #444; }
+  td.amount { color: #FF9900; font-weight: bold; }
+  .status { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; background: #fff3e0; color: #FF9900; }
+  .status.paid { background: #e8f5e9; color: #2e7d32; }
+  .pager { margin-top: 12px; font-size: 12px; color: #999; text-align: right; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>发票列表</h1>
+  <div class="toolbar">
+    <button class="btn">新建发票</button>
+    <button class="btn secondary">导出</button>
+    <button class="btn secondary">筛选</button>
+  </div>
+  <div class="card">
+    <table>
+      <thead><tr><th>发票号</th><th>客户</th><th>开票日期</th><th>金额</th><th>状态</th><th></th></tr></thead>
+      <tbody>
+        <tr><td>INV-2026-0912</td><td>杭州云栖科技有限公司</td><td>2026-09-12</td><td class="amount">¥128,400.00</td><td><span class="status">待付款</span></td><td><a href="#">查看</a></td></tr>
+        <tr><td>INV-2026-0911</td><td>北京长风物流</td><td>2026-09-11</td><td class="amount">¥3,200.00</td><td><span class="status paid">已付款</span></td><td><a href="#">查看</a></td></tr>
+        <tr><td>INV-2026-0910</td><td>深圳市前海微众银行股份有限公司深圳分行</td><td>2026-09-10</td><td class="amount">¥1,056,000.00</td><td><span class="status">待付款</span></td><td><a href="#">查看</a></td></tr>
+        <tr><td>INV-2026-0909</td><td>上海橙光</td><td>2026-09-09</td><td class="amount">¥980.00</td><td><span class="status paid">已付款</span></td><td><a href="#">查看</a></td></tr>
+      </tbody>
+    </table>
+    <div class="pager">共 137 条 · 第 1 / 14 页</div>
+  </div>
+</div>
+</body>
+</html>
