@@ -59,15 +59,15 @@
       "id": 4,
       "name": "from-scratch-gym-dashboard",
       "prompt": "用 Vue 3 + Tailwind 帮我写一个健身房会员管理后台的首页，前台小妹每天上班开着用。要展示：今日到店人数、本月新增会员、即将到期会员、今日课程排期、教练列表、本月收入趋势、待办事项、公告。先出一版能跑的单文件组件。",
-      "expected_output": "先写出前台每天的主任务（接待到店、处理续费/到期提醒），据此让即将到期会员或今日课程/到店成为主体，收入趋势和公告降为辅助；不是八个等大卡片。写明主任务是假设、若主要用户是老板则主体不同。数字用等宽数字。不为占位而硬编码假图表数据冒充真实。",
+      "expected_output": "按工作台首页的标准结构：概览一行数字、主列放课表和到期会员、右栏放次要信息。主体来自前台的任务并标为假设。一种强调色，无阴影卡片，每个列表有空态。只做用户列出的八个模块的界面，不新增功能。",
       "files": [],
       "expectations": [
         "States who the primary user is and what they do on this page every day before deciding layout, and flags it as an assumption",
-        "The eight modules are NOT rendered as an equal-size uniform card grid; at least one module is clearly dominant in area or position",
-        "The dominant module is one the stated task needs continuously (e.g. 即将到期会员, 今日课程, 今日到店), and 公告 / 收入趋势 are visibly subordinate",
-        "Numeric readouts use tabular-nums",
-        "Any sample data is clearly labelled as placeholder/props to be replaced, not hardcoded inside the template as if real",
-        "Response states what was not verified (no browser render) and offers what would change if the primary user were the owner instead"
+        "The eight modules are NOT rendered as an equal-size uniform card grid; the layout follows the workbench pattern: overview numbers in one row, main column for schedule/expiring/todo, sidebar for secondary info",
+        "The dominant module is one the stated task needs continuously; 公告 and 收入趋势 are visibly subordinate",
+        "Numeric readouts use tabular-nums; no per-card shadows or colored cards; one accent color",
+        "Every list has an empty state",
+        "Response states what was not verified and does not claim features beyond the eight modules the user listed"
       ]
     },
     {
@@ -199,17 +199,17 @@
       "id": 12,
       "name": "from-scratch-order-list",
       "prompt": "用 React + Tailwind 写一个电商后台的订单列表页，运营每天在这里查订单、批量发货、点进单个订单看详情。字段有订单号、客户、金额、状态（待付款/待发货/已发货/已完成/已取消）、下单时间。先出一版能跑的。",
-      "expected_output": "落到查询列表页的标准结构：页头（标题 + 新建/导出）、筛选区（状态、时间、关键字一行）、表格工具栏（结果数、批量发货、列设置）、表格（订单号等宽、金额右对齐等宽数字、状态用点 + 文字、行尾操作）、底部分页。不做订单卡片网格，不在表格上方放统计卡片。有空态。说明未渲染。",
+      "expected_output": "按查询列表页的标准结构：页头、筛选行、工具栏、表格、分页。不做订单卡片网格，表格上方不放统计卡。金额右对齐等宽数字，状态用点加文字。批量发货和行内操作有位置和禁用态即可，发货逻辑不评。有空态。只做用户要的界面，不补造功能。",
       "files": [],
       "expectations": [
         "Page follows the list-page skeleton: header with primary action, filter row, table toolbar, table, pagination at the bottom",
         "Orders are rendered as table rows, not as cards or a card grid",
         "No statistics/KPI cards are placed above the table",
         "Amount column is right-aligned with tabular-nums; order id uses tabular-nums",
-        "Status is shown as a dot plus text; at most one status (e.g. 待发货 or 已取消) carries a semantic color, the rest are neutral",
-        "Batch action (批量发货) lives in the table toolbar and depends on row selection; row-level actions sit in the last column",
+        "Status is shown as a dot plus text; at most one status carries a semantic color, the rest are neutral",
+        "Batch action and row actions have a visible place (toolbar / last column) with a disabled state; how shipping works internally is not judged",
         "An empty state exists for zero results",
-        "Response states the page's user task, names the list-page pattern it followed, and says rendering was not verified"
+        "Response states the page's user task, names the list-page structure it followed, and says rendering was not verified; it does not add features the user did not ask for"
       ]
     }
   ]
