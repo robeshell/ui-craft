@@ -6,7 +6,9 @@
       "name": "equal-cards-dashboard",
       "prompt": "这是我们内部运维监控平台的首页，用 React + Tailwind 写的。现在页面是 2x3 六张一样大的卡片：CPU 使用率、内存、磁盘、最近告警、服务列表、快捷操作。值班同事说看着像 demo，出了问题第一眼找不到。帮我重新排一下，品牌色 #0F766E 要保留，功能都不能少。",
       "expected_output": "先写出用户在此页的任务（值班时发现并定位告警），把最近告警和异常服务作为主体，资源指标压缩为顶部一行读数，快捷操作合并进工具栏或行内；给出前后对照说明、文字/色彩/间距角色表（标注临时基线）、以及分开记录的实查项和未验证项。不应输出六张换了颜色的等大卡片。",
-      "files": [],
+      "files": [
+        "evals/files/eval-1/Dashboard.jsx"
+      ],
       "expectations": [
         "States the page's user task in one sentence (e.g. on-call engineer must spot and locate a problem) before proposing layout",
         "Alerts and/or abnormal services become the visually dominant area; the six modules are no longer an equal-size 2x3 grid",
@@ -24,7 +26,9 @@
       "name": "local-fix-number-jitter",
       "prompt": "SwiftUI 写的一个充电桩状态页，顶部有个大字显示当前功率 kW，数字每秒刷新，刷新时旁边的单位和右边的暂停按钮会左右抖。只想解决这个抖动，别的别动。",
       "expected_output": "识别为局部修正模式，不做整页重排。根因是比例字体数字宽度变化，修法是等宽数字（monospacedDigit）加按最大位数预留宽度或固定 frame，单位与数字保持邻近。交付是一段代码加一句根因说明，不附带整套设计规范。",
-      "files": [],
+      "files": [
+        "evals/files/eval-2/ChargerStatusView.swift"
+      ],
       "expectations": [
         "Fix applies monospacedDigit() (or an equivalent tabular-figures setting) to the power number",
         "Reserves a stable width for the number (fixed/min frame, hidden max-width placeholder, or equivalent) so the unit and button stop moving",
@@ -38,7 +42,9 @@
       "name": "review-settings-page",
       "prompt": "帮我看看这个 Android 设置页（Compose）有什么视觉问题，截图我发不了，代码在 app/src/main/java/com/example/settings/SettingsScreen.kt。里面用的颜色是 #9E9E9E 的辅助文字、#EEEEEE 的分隔线、每个设置项各自一张带阴影的 Card，标题字号 16sp 正文也是 16sp。",
       "expected_output": "评审模式。按影响排序列出问题：#9E9E9E 对白底约 2.7:1 不满足 4.5:1（用脚本算过，写完整精度）；标题和正文同字号导致层级缺失；连续设置项不应每项一张带阴影的卡片，应改为列表行加细分隔；分隔线作为唯一边界时对比度不足。每条写位置、现象、影响和建议。没有截图的部分明确标注为待查，不宣称已验证渲染。",
-      "files": [],
+      "files": [
+        "evals/files/eval-3/SettingsScreen.kt"
+      ],
       "expectations": [
         "Flags #9E9E9E secondary text as failing 4.5:1 with a computed ratio (about 2.7:1), not just 'too light'",
         "Flags that title and body are both 16sp, i.e. no type hierarchy",
