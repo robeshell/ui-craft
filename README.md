@@ -79,13 +79,14 @@ agent 会先判断任务是局部修正、页面重排、规范整理还是评�
 | --- | --- | --- |
 | [SKILL.md](SKILL.md) | 入口：任务模式判断、五步流程、交付格式、精简示例 | 每次触发 |
 | [references/example.md](references/example.md) | 一个客服工单页从等大卡片到任务驱动的完整推演，含规范表和实查记录 | 遇到主次不清的页面 |
+| [references/patterns.md](references/patterns.md) | 工作台、列表、详情、表单、看板、设置等十三种常见页面的标准结构、主体和 AI 版本常见错误 | 从零生成或重排常见页面时 |
 | [references/visual-rules.md](references/visual-rules.md) | 文字、单位、色彩、间距、圆角、图标、状态、动效的判定规则和临时基线 | 处理具体细节时 |
 | [references/color-layers.md](references/color-layers.md) | 表面分层、颜色预算、大色块、图标底块、渐变的判定规则，以及 AI 味特征清单 | 页面颜色太花、有 AI 味、深色模式分不清层次时 |
 | [references/review.md](references/review.md) | 检查范围、检查表、证据边界、评审表达、交付记录模板 | 验收和交付时 |
 | [references/sources.md](references/sources.md) | CRAP、平台文档的归属与取舍 | 需要追溯来源时 |
 | [scripts/contrast.py](scripts/contrast.py) | sRGB 色对对比度计算，支持透明色合成 | 校验文字颜色时 |
 | [scripts/surfaces.py](scripts/surfaces.py) | 从品牌色生成带色调的中性灰阶，浅色和深色各一套，附对比度 | 项目没有 tokens、需要一套表面色时 |
-| [evals/evals.json](evals/evals.json) | 十一个测试 prompt 和评判标准，输入文件在 `evals/files/`，用于比较装与不装 skill 的输出差异 | 修改 skill 后 |
+| [evals/evals.json](evals/evals.json) | 十二个测试 prompt 和评判标准，输入文件在 `evals/files/`，用于比较装与不装 skill 的输出差异 | 修改 skill 后 |
 
 ```bash
 python3 scripts/contrast.py '#767676' '#FFFFFF'

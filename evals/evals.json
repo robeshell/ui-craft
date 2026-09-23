@@ -194,6 +194,23 @@
         "Response explains that the gradient, tinted cards and icon tiles stay because the spec requires them and the colors carry meaning; at most one line suggests raising it with the brand team",
         "Response states rendering was not verified"
       ]
+    },
+    {
+      "id": 12,
+      "name": "from-scratch-order-list",
+      "prompt": "用 React + Tailwind 写一个电商后台的订单列表页，运营每天在这里查订单、批量发货、点进单个订单看详情。字段有订单号、客户、金额、状态（待付款/待发货/已发货/已完成/已取消）、下单时间。先出一版能跑的。",
+      "expected_output": "落到查询列表页的标准结构：页头（标题 + 新建/导出）、筛选区（状态、时间、关键字一行）、表格工具栏（结果数、批量发货、列设置）、表格（订单号等宽、金额右对齐等宽数字、状态用点 + 文字、行尾操作）、底部分页。不做订单卡片网格，不在表格上方放统计卡片。有空态。说明未渲染。",
+      "files": [],
+      "expectations": [
+        "Page follows the list-page skeleton: header with primary action, filter row, table toolbar, table, pagination at the bottom",
+        "Orders are rendered as table rows, not as cards or a card grid",
+        "No statistics/KPI cards are placed above the table",
+        "Amount column is right-aligned with tabular-nums; order id uses tabular-nums",
+        "Status is shown as a dot plus text; at most one status (e.g. 待发货 or 已取消) carries a semantic color, the rest are neutral",
+        "Batch action (批量发货) lives in the table toolbar and depends on row selection; row-level actions sit in the last column",
+        "An empty state exists for zero results",
+        "Response states the page's user task, names the list-page pattern it followed, and says rendering was not verified"
+      ]
     }
   ]
 }
