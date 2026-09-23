@@ -1,5 +1,7 @@
 # UI Craft
 
+[![npx skills add robeshell/ui-craft](https://img.shields.io/badge/npx-skills%20add%20robeshell%2Fui--craft-CB3837?logo=npm&logoColor=white)](#安装)
+
 给 coding agent 用的 UI 设计与精修 skill。适用于网页和 iOS / Android / HarmonyOS 原生应用，中文编写。
 
 它让 agent 在动手改样式之前先回答一个问题："用户在这个页面要完成什么？"然后把视觉权重、信息分组、品牌表达和细节规则依次落到可验证的实现上。核心是判定规则加一份完整示例，而不是一套固定主题。
@@ -78,10 +80,12 @@ agent 会先判断任务是局部修正、页面重排、规范整理还是评�
 | [SKILL.md](SKILL.md) | 入口：任务模式判断、五步流程、交付格式、精简示例 | 每次触发 |
 | [references/example.md](references/example.md) | 一个客服工单页从等大卡片到任务驱动的完整推演，含规范表和实查记录 | 遇到主次不清的页面 |
 | [references/visual-rules.md](references/visual-rules.md) | 文字、单位、色彩、间距、圆角、图标、状态、动效的判定规则和临时基线 | 处理具体细节时 |
+| [references/color-layers.md](references/color-layers.md) | 表面分层、颜色预算、大色块、图标底块、渐变的判定规则，以及 AI 味特征清单 | 页面颜色太花、有 AI 味、深色模式分不清层次时 |
 | [references/review.md](references/review.md) | 检查范围、检查表、证据边界、评审表达、交付记录模板 | 验收和交付时 |
 | [references/sources.md](references/sources.md) | CRAP、教程和平台文档的归属与取舍 | 需要追溯来源时 |
 | [scripts/contrast.py](scripts/contrast.py) | sRGB 色对对比度计算，支持透明色合成 | 校验文字颜色时 |
-| [evals/evals.json](evals/evals.json) | 七个测试 prompt 和评判标准，输入文件在 `evals/files/`，用于比较装与不装 skill 的输出差异 | 修改 skill 后 |
+| [scripts/surfaces.py](scripts/surfaces.py) | 从品牌色生成带色调的中性灰阶，浅色和深色各一套，附对比度 | 项目没有 tokens、需要一套表面色时 |
+| [evals/evals.json](evals/evals.json) | 十一个测试 prompt 和评判标准，输入文件在 `evals/files/`，用于比较装与不装 skill 的输出差异 | 修改 skill 后 |
 
 ```bash
 python3 scripts/contrast.py '#767676' '#FFFFFF'

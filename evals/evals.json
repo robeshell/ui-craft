@@ -122,6 +122,78 @@
         "Response explains the 3x -> pt conversion so the user can check the designer's redline next time",
         "Response states it was not built or run on a device"
       ]
+    },
+    {
+      "id": 8,
+      "name": "ai-look-color-cleanup",
+      "prompt": "这个概览页是 AI 帮我生成的，功能都对，但同事说一看就是 AI 做的，颜色太花了。帮我把配色调舒服一点，布局和内容不用大动。文件是 Overview.html。",
+      "expected_output": "识别出'用颜色冒充重要性'的根因：紫色渐变页头和背景、四张彩虹指标卡、每行一个渐变图标底块、渐变文字、发光阴影、emoji 标题。改成明度分层（页面底 + 白色表面）、一种强调色、指标卡同一表面色、图标去底块改单线或去掉、渐变全部去掉、状态标签用同色相浅底配深字并算对比度。布局结构保持不变。说明每处为什么改，并注明未渲染。",
+      "files": [
+        "evals/files/eval-8/Overview.html"
+      ],
+      "expectations": [
+        "All gradients are removed: no bg-gradient-*, linear-gradient or bg-clip-text gradient text remains",
+        "The four KPI cards share one neutral surface color; per-card blue/green/amber/pink backgrounds and colored shadows are gone",
+        "Task-row icon tiles (colored/gradient squares behind emoji) are removed or replaced by a single neutral icon style, not one color per row",
+        "Only one accent color remains for primary action/selection; status chips keep semantic colors with same-hue dark text on light tint (e.g. red-700 on red-50), and the response reports their contrast ratios",
+        "Glow/colored box-shadows and backdrop-blur on ordinary cards are removed; hierarchy comes from page-bg vs surface luminance plus spacing",
+        "Emoji used as section/list icons are removed or replaced with a consistent icon approach",
+        "Layout structure (header, KPI row, 2:1 main grid) is preserved; the change is confined to color, decoration and icon treatment",
+        "Response names the root cause (color used to fake importance) and explains each replacement, and states rendering was not verified"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "dark-mode-layering",
+      "prompt": "这个深色模式的监控页看着刺眼，卡片和背景也分不清层次，帮我把颜色调一下。文件 monitor.html。",
+      "expected_output": "页面底不用纯黑，表面比页面底亮一档，浮起的告警弹层再亮一档并用 1px 边线代替发光阴影。去掉青色发光阴影。强调色从霓虹青降饱和度，只用于刷新按钮和在线状态；离线和告警改用语义色而不是品红和荧光绿。文字不用纯白，用三档灰并逐对算对比度，slate-500/600 在深色底上不达标要提亮。只改颜色。",
+      "files": [
+        "evals/files/eval-9/monitor.html"
+      ],
+      "expectations": [
+        "Page background is no longer pure black; surfaces are lighter than the page and the fixed alert panel is lighter still or bordered, i.e. elevation reads as lightness steps",
+        "All glow box-shadows are removed; elevation uses a 1px lighter border or a small neutral shadow",
+        "Accent cyan is desaturated/darkened and used only for the primary action and online state; offline and alert states use semantic colors (red/amber family), not fuchsia and lime",
+        "Primary text is not pure white; secondary and tertiary text use a gray ladder and the response reports contrast ratios that meet 4.5:1 on the surfaces they sit on",
+        "Table header/meta text (originally slate-500/600 on slate-900) is lightened to pass 4.5:1",
+        "Only color and shadow values change; layout, content and Tailwind structure are otherwise untouched",
+        "Response states rendering was not verified"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "already-fine-no-op",
+      "prompt": "帮我看看这个订单页还能不能再优化一下，OrdersPage.vue。",
+      "expected_output": "读完后判断页面已经满足任务：待处理列表是主体，主操作接单在行尾且是唯一实心色，状态用点加文字，等宽数字右对齐，有空态，对比度达标。结论是不需要改，列出检查过的项，至多给一两条标为可选的建议，不修改文件。",
+      "files": [
+        "evals/files/eval-10/OrdersPage.vue"
+      ],
+      "expectations": [
+        "The file is not modified (no diff), or any change is limited to something the response identifies as a concrete defect with evidence",
+        "Response states plainly that the page does not need changes, before any suggestions",
+        "Response lists what was checked (hierarchy, primary action, status cues, numbers, empty state, contrast)",
+        "Any suggestions are at most two, explicitly marked optional, and not applied",
+        "Response does not invent problems from taste (radius, shadow, spacing tweaks without a stated defect)"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "spec-overrides-skill-taste",
+      "prompt": "这个概览页同事说有点 AI 味，帮我看看能不能改得舒服点。规范在 DESIGN.md。",
+      "expected_output": "读到 DESIGN.md 后发现渐变横幅、四色指标卡、彩色图标底块都是规范明确要求的品牌表达，四色有业务含义。这些一律不动，也不改 DESIGN.md。只处理规范没覆盖的真实问题：金额 #9CA3AF 对白底 2.54:1 不达标（规范要求 4.5:1）。回复里说明哪些'AI 味'特征是规范要求所以保留，至多提一句可以和品牌团队讨论，并注明未渲染。",
+      "files": [
+        "evals/files/eval-11/DESIGN.md",
+        "evals/files/eval-11/Overview.html"
+      ],
+      "expectations": [
+        "The gradient header banner is kept exactly as DESIGN.md specifies (linear-gradient #6D28D9 to #4F46E5, 96px, white title)",
+        "The four KPI cards keep their four spec-mandated tinted backgrounds",
+        "The row icon tiles are kept with their business-line colors",
+        "DESIGN.md is not modified",
+        "The one real defect is fixed: amount text #9CA3AF (2.54:1) is changed to a color meeting 4.5:1, with the ratio reported",
+        "Response explains that the gradient, tinted cards and icon tiles stay because the spec requires them and the colors carry meaning; at most one line suggests raising it with the brand team",
+        "Response states rendering was not verified"
+      ]
     }
   ]
 }

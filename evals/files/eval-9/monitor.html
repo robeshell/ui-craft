@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+<meta charset="utf-8">
+<title>设备监控 · 深色模式</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-black text-white">
+  <div class="mx-auto max-w-5xl px-6 py-8 space-y-6">
+    <header class="flex items-center justify-between">
+      <h1 class="text-2xl font-bold text-cyan-400">设备监控</h1>
+      <button class="rounded-lg bg-cyan-400 px-4 py-2 font-semibold text-black shadow-[0_0_20px_rgba(34,211,238,0.7)]">刷新</button>
+    </header>
+
+    <section class="grid grid-cols-3 gap-4">
+      <div class="rounded-xl bg-slate-900 p-5 shadow-[0_0_30px_rgba(34,211,238,0.25)]">
+        <p class="text-sm text-slate-500">在线设备</p>
+        <p class="text-3xl font-bold text-cyan-400">128</p>
+      </div>
+      <div class="rounded-xl bg-slate-900 p-5 shadow-[0_0_30px_rgba(34,211,238,0.25)]">
+        <p class="text-sm text-slate-500">离线设备</p>
+        <p class="text-3xl font-bold text-fuchsia-400">7</p>
+      </div>
+      <div class="rounded-xl bg-slate-900 p-5 shadow-[0_0_30px_rgba(34,211,238,0.25)]">
+        <p class="text-sm text-slate-500">今日告警</p>
+        <p class="text-3xl font-bold text-lime-400">3</p>
+      </div>
+    </section>
+
+    <section class="rounded-xl bg-slate-900 p-6 shadow-[0_0_30px_rgba(34,211,238,0.25)]">
+      <h2 class="text-lg font-semibold text-cyan-400">设备列表</h2>
+      <table class="mt-4 w-full text-sm">
+        <thead class="text-slate-600">
+          <tr><th class="py-2 text-left">名称</th><th class="text-left">位置</th><th class="text-right">最近心跳</th><th class="text-right">状态</th></tr>
+        </thead>
+        <tbody class="divide-y divide-slate-800">
+          <tr><td class="py-3">网关 GW-01</td><td class="text-slate-500">3 楼机房</td><td class="text-right text-slate-500">12 秒前</td><td class="text-right text-cyan-400">在线</td></tr>
+          <tr><td class="py-3">传感器 TH-204</td><td class="text-slate-500">仓库 B 区</td><td class="text-right text-slate-500">4 分钟前</td><td class="text-right text-fuchsia-400">离线</td></tr>
+          <tr><td class="py-3">摄像头 CAM-17</td><td class="text-slate-500">大门</td><td class="text-right text-slate-500">3 秒前</td><td class="text-right text-cyan-400">在线</td></tr>
+          <tr><td class="py-3">电表 EM-08</td><td class="text-slate-500">配电间</td><td class="text-right text-slate-500">1 小时前</td><td class="text-right text-lime-400">告警</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="fixed bottom-6 right-6 w-80 rounded-xl bg-slate-900 p-4 shadow-[0_0_40px_rgba(34,211,238,0.35)]">
+      <p class="font-semibold text-cyan-400">告警</p>
+      <p class="mt-1 text-sm text-slate-400">电表 EM-08 超过 1 小时没有心跳。</p>
+    </div>
+  </div>
+</body>
+</html>
